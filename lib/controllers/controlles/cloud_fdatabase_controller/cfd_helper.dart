@@ -5,11 +5,12 @@ class CFDHelper {
   BuildContext context;
 
   CFDHelper({required this.context});
-  CollectionReference users = FirebaseFirestore.instance.collection('students');
+  CollectionReference students = FirebaseFirestore.instance.collection('students');
 
   Future<String?> addData(String name, String phone) async {
     try {
-      DocumentReference documentReference = await users.add({
+      DocumentReference documentReference = await students.add({
+
         'name': name,
         'phone': phone,
       });
@@ -21,5 +22,9 @@ class CFDHelper {
       print("Failed to add user: $error");
       return null;
     }
+  }
+  getData(){
+    students.get();
+
   }
 }
