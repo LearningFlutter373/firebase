@@ -1,25 +1,25 @@
-import 'package:firebase/controllers/controlles/realtime_database_controller/realtime_database_helper.dart';
-import 'package:firebase/view/widgets/cloud_database_widgets/add_data_widgets.dart';
+
+import 'package:firebase/controllers/controlles/cloud_firebase_with_provider_controller/cfdb_helper_with_provider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../controllers/controlles/cloud_fdatabase_controller/cfd_helper.dart';
 import '../../utils/space_manage.dart';
-class AddDataCFScreen extends StatefulWidget {
-  bool updateStatus;
-  AddDataCFScreen({Key? key, required this.updateStatus}) : super(key: key);
+import '../../widgets/cloud_database_widgets/add_data_widgets.dart';
+
+class AddDataWithProvider extends StatefulWidget {
+  AddDataWithProvider({Key? key}) : super(key: key);
 
   @override
-  State<AddDataCFScreen> createState() => _AddDataCFScreen();
+  State<AddDataWithProvider> createState() => _AddDataWithProvider();
 }
 
-class _AddDataCFScreen extends State<AddDataCFScreen> {
+class _AddDataWithProvider extends State<AddDataWithProvider> {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var dataHelper=CFDHelper();
+    var dataHelper=CFDHelperWithProvider();
     var addDataWidget=AddCFDataWidgets(context: context);
     var spaceManage=SpaceMange(context: context);
     return SafeArea(child: Scaffold(
@@ -65,8 +65,8 @@ class _AddDataCFScreen extends State<AddDataCFScreen> {
                 height: 40,
                 child:  addDataWidget.addDataButton(onPressed: (){
                   dataHelper.addData(nameController.text, phoneController.text,emailController.text);
-                  Navigator.pop(context);
-                }, child: Text(widget.updateStatus == false ? "Add" : "Update"),
+Navigator.pop(context);
+                }, child: Text( "Add"),
                 )
             )],
         ),
